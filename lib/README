@@ -1,0 +1,3 @@
+Other required libraries that are not available under lib folder:
+- boost (using boost/asio, but may be using other boost libraries)
+- mariadb
