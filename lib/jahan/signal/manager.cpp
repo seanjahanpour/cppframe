@@ -9,7 +9,6 @@ namespace jahan::signal {
 	std::function<void(int signal)> Manager::user_notify_callback;
 	volatile sig_atomic_t Manager::m_run;
 	volatile sig_atomic_t Manager::m_sig_caught;
-	thread_local std::jmp_buf Manager::m_jump_buffer;
 
 	void Manager::setup_handler(std::function<void(int signal)> call_back,
 		std::function<void(std::string message, Logger::LogLevel log_level)> logger)
@@ -23,7 +22,6 @@ namespace jahan::signal {
 		sa_act.sa_handler = [](int signum){
 			m_run = 0;
 			m_sig_caught = signum;
-			longjmp(get_jump_buffer(), 1);
 		};
 
 		//sigemptyset(&sa_act.sa_mask);
@@ -97,10 +95,5 @@ namespace jahan::signal {
 		
 		m_sig_caught = 0;
 		m_run = 1;
-	}
-
-	std::jmp_buf& Manager::get_jump_buffer()
-	{
-		return m_jump_buffer;
 	}
 } //namespace jahan::signal
