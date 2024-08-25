@@ -1,3 +1,7 @@
+// Whats app: +1 702 823 6932
+// Google meet: seanjahanpour@gmail.com
+
+
 // Author: Sean Jahanpour (sean@jahanpour.com)
 //
 #ifndef JAHAN_CONCURRENCY_THREAD_POOL_H_
